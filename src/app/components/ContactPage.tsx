@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Mail, Github, Linkedin, Send, MessageCircle, MapPin, Phone, CheckCircle, Download } from "lucide-react";
 import mePhoto from "../../imports/me.jpeg";
 import resumeUrl from "../../imports/resume.pdf?url";
+import emailjs from "@emailjs/browser";
 
 const socials = [
   {
@@ -61,13 +62,47 @@ export function ContactPage() {
     return e;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const errs = validate();
-    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
-    setSending(true);
-    setTimeout(() => { setSending(false); setSent(true); }, 1800);
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const errs = validate();
+
+  if (Object.keys(errs).length > 0) {
+    setErrors(errs);
+    return;
+  }
+
+  setSending(true);
+
+  try {
+    await emailjs.send(
+      "service_3ifod5n",
+      "template_zxi9r7d",
+      {
+        from_name: form.name,
+        from_email: form.email,
+        subject: form.subject,
+        message: form.message,
+      },
+      "gdh6036XY7dWO_rUO"
+    );
+
+    setSent(true);
+
+    setForm({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+
+  } catch (error) {
+    console.error(error);
+    alert("Failed to send message");
+  }
+
+  setSending(false);
+};
 
   const inputStyle = (field: string) => ({
     width: "100%",
