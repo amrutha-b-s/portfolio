@@ -249,9 +249,9 @@ export function Layout() {
             }}
           >
             {[
-              { icon: <Github size={20} />, href: "https://github.com/", label: "GitHub" },
-              { icon: <Linkedin size={20} />, href: "https://linkedin.com/", label: "LinkedIn" },
-              { icon: <Mail size={20} />, href: "mailto:amrutha@example.com", label: "Email" },
+              { icon: <Github size={20} />, href: "https://github.com/amrutha-b-s", label: "GitHub" },
+              { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/amrutha-b-s-", label: "LinkedIn" },
+              { icon: <Mail size={20} />, href: "mailto:amruthabswork@gmail.com", label: "Email" },
             ].map((social) => (
               <motion.a
                 key={social.label}
