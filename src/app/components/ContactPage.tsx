@@ -79,8 +79,8 @@ export function ContactPage() {
       "service_3ifod5n",
       "template_zxi9r7d",
       {
-        name: form.name,
-        email: form.email,
+        from_name: form.name,
+        from_email: form.email,
         subject: form.subject,
         message: form.message,
       },
